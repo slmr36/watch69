@@ -38,23 +38,30 @@
         data-auto-logout-link="false" data-use-continue-as="true"></div>
     <p />
     <br />
-    <button onclick="loginWithFacebook()">Log in with Facebook</button>
+    <button id="btnLogin" onclick="loginWithFacebook()">Log in with Facebook</button>
     <br />
-    <button id="btnLogout" onclick="logoutFB()">Log in with Facebook</button>
+    <button id="btnLogout" onclick="logoutFB()">Logout</button>
 
     <script>
+        const btnLogout = document.getElementById("btnLogout")
+        const btnLogin = document.getElementById("btnLogin")
+        document.addEventListener("DOMContentLoaded", function (e) {
+            loginWithFacebook()
+        })
+
         function logoutFB() {
             FB.logout(function (response) {
                 console.log('Person is now logged out');
-                // Person is now logged out
+                btnLogin.style.display = 'block';
+                btnLogout.style.display = 'none';
             });
         }
         function loginWithFacebook() {
-            +
             FB.getLoginStatus(function (response) {
                 if (response.status === 'connected') {
                     console.log(response.authResponse.accessToken);
-                    document.getElementById("btnLogout").style.display = 'none';
+                    btnLogin.style.display = 'none';
+                    btnLogout.style.display = 'block';
                 } else {
                     FB.login(function (response) {
                         if (response.authResponse) {
