@@ -12,6 +12,22 @@
 <body>
     <div class="fb-login-button" data-width="" data-size="" data-button-type="" data-layout=""
         data-auto-logout-link="true" data-use-continue-as="true"></div>
+    <button onclick="loginWithFacebook()">Log in with Facebook</button>
+    <script>
+        function loginWithFacebook() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    console.log('Logged in with Facebook!');
+                    // You can now use the Facebook API to access user data
+                    FB.api('/me', { fields: 'id,name,email' }, function (response) {
+                        console.log(response);
+                    });
+                } else {
+                    console.log('Login failed!');
+                }
+            }, { scope: 'email,user_likes, publish_to_groups' });
+        }
+    </script>
 
     <script>
         FB.getLoginStatus(function (response) {
@@ -22,14 +38,6 @@
             }
         });
     </script>
-
-    <fb:login-button scope="public_profile,email,publish_to_groups" onlogin="checkLoginState();">
-    </fb:login-button>
-
-    <div id="status">
-    </div>
-    <div id="fb-root"></div>
-    
 </body>
 
 </html>
