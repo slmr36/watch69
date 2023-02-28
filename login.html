@@ -29,33 +29,31 @@
 </head>
 
 <body>
-    <p><div class="fb-login-button" data-width="50" data-size="" data-button-type="" data-layout="" data-auto-logout-link="true" data-use-continue-as="true"></div><p/>
+    <p><div class="fb-login-button" data-width="100" data-size="" data-button-type="" data-layout="" data-auto-logout-link="true" data-use-continue-as="true"></div><p/>
     <br />
     <button onclick="loginWithFacebook()">Log in with Facebook</button>
     <script>
-        
-        FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-        });
+       
         function loginWithFacebook() {
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    console.log('Logged in with Facebook!');
-                    // You can now use the Facebook API to access user data
-                    FB.api('/me', { fields: 'id,name,publish_to_groups' }, function (response) {
-                        console.log(response);
-                    });
-                    FB.getLoginStatus(function (response) {
+            FB.getLoginStatus(function (response) {
                         if (response.status === 'connected') {
                             console.log(response.authResponse.accessToken);
                         } else {
-                            console.log(response);
-                        }
+                            FB.login(function (response) {
+                if (response.authResponse) {
+                    console.log('Logged in with Facebook!');
+                    // You can now use the Facebook API to access user data
+                    FB.api('/me', { fields: 'id,name' }, function (response) {
+                        console.log(response);
                     });
+                    
                 } else {
                     console.log('Login failed!');
                 }
-            }, { scope: 'email,user_likes, publish_to_groups' });
+            }, { scope: 'email, publish_to_groups' });
+                        }
+                    });
+            
         }
     </script>
 
