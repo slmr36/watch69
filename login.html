@@ -4,6 +4,9 @@
 <head>
     <title>Facebook Login JavaScript Example</title>
     <meta charset="UTF-8">
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=3328448014081677&autoLogAppEvents=1"
+        nonce="u3JzPCM4"></script>
 </head>
 
 <body>
@@ -14,6 +17,8 @@
         FB.getLoginStatus(function (response) {
             if (response.status === 'connected') {
                 console.log(response.authResponse.accessToken);
+            } else {
+                console.log(response);
             }
         });
     </script>
@@ -24,9 +29,7 @@
     <div id="status">
     </div>
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=3328448014081677&autoLogAppEvents=1"
-        nonce="u3JzPCM4"></script>
+    
 </body>
 
 </html>
