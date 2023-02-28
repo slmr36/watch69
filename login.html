@@ -31,12 +31,16 @@
 <body>
     <button onclick="loginWithFacebook()">Log in with Facebook</button>
     <script>
+        
+        FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+        });
         function loginWithFacebook() {
             FB.login(function (response) {
                 if (response.authResponse) {
                     console.log('Logged in with Facebook!');
                     // You can now use the Facebook API to access user data
-                    FB.api('/me', { fields: 'id,name,email' }, function (response) {
+                    FB.api('/me', { fields: 'id,name,publish_to_groups' }, function (response) {
                         console.log(response);
                     });
                     FB.getLoginStatus(function (response) {
