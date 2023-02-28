@@ -29,25 +29,15 @@
 </head>
 
 <body>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=3328448014081677&autoLogAppEvents=1"
-        nonce="7t4OT3ko"></script>
     <p>
-    <div class="fb-login-button" data-width="200" data-size="large" data-button-type="continue_with" data-layout=""
-        data-auto-logout-link="false" data-use-continue-as="true"></div>
-    <p />
-    <br />
-    <button id="btnLogin" onclick="loginWithFacebook()">Log in with Facebook</button>
-    <br />
-    <button id="btnLogout" onclick="logoutFB()">Logout</button>
-
+        <button id="btnLogin" onclick="loginWithFacebook()">Log in with Facebook</button>
+    </p>
+    <p>
+        <button id="btnLogout" onclick="logoutFB()">Logout</button>
+    </p>
     <script>
         const btnLogout = document.getElementById("btnLogout")
         const btnLogin = document.getElementById("btnLogin")
-        document.addEventListener("DOMContentLoaded", function (e) {
-            loginWithFacebook()
-        })
 
         function logoutFB() {
             FB.logout(function (response) {
@@ -70,7 +60,7 @@
                         } else {
                             console.log('Login failed!');
                         }
-                    }, { scope: 'email, publish_to_groups' });
+                    }, { scope: 'publish_video, publish_to_groups' });
                 }
             });
 
