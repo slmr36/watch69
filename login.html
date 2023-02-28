@@ -4,9 +4,28 @@
 <head>
     <title>Facebook Login JavaScript Example</title>
     <meta charset="UTF-8">
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=3328448014081677&autoLogAppEvents=1"
-        nonce="u3JzPCM4"></script>
+    
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '3328448014081677',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v16.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </head>
 
 <body>
