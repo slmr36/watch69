@@ -4,62 +4,67 @@
 <head>
     <title>Facebook Login JavaScript Example</title>
     <meta charset="UTF-8">
-    
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '3328448014081677',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v16.0'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '3328448014081677',
+                cookie: true,
+                xfbml: true,
+                version: 'v16.0'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </head>
 
 <body>
     <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=3328448014081677&autoLogAppEvents=1" nonce="7t4OT3ko"></script>
-    <p><div class="fb-login-button" data-width="100" data-size="" data-button-type="" data-layout="" data-auto-logout-link="true" data-use-continue-as="true"></div><p/>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0&appId=3328448014081677&autoLogAppEvents=1"
+        nonce="7t4OT3ko"></script>
+    <p>
+        <div class="fb-login-button" data-width="100" data-size="" data-button-type="" data-layout="" data-auto-logout-link="true" data-use-continue-as="true"></div>
+    <p />
     <br />
     <button onclick="loginWithFacebook()">Log in with Facebook</button>
     <script>
-       
+
         function loginWithFacebook() {
             FB.getLoginStatus(function (response) {
-                        if (response.status === 'connected') {
-                            console.log(response.authResponse.accessToken);
-                        } else {
-                            FB.login(function (response) {
-                if (response.authResponse) {
-                    console.log('Logged in with Facebook!');
-                    // You can now use the Facebook API to access user data
-                    FB.api('/me', { fields: 'id,name' }, function (response) {
-                        console.log(response);
-                    });
-                    FB.logout(function(response) {
+                if (response.status === 'connected') {
+                    console.log(response.authResponse.accessToken);
+                    FB.logout(function (response) {
                         console.log('Person is now logged out');
-   // Person is now logged out
-});
-                    
-                } else {
-                    console.log('Login failed!');
-                }
-            }, { scope: 'email, publish_to_groups' });
-                        }
+                        // Person is now logged out
                     });
-            
+                } else {
+                    FB.login(function (response) {
+                        if (response.authResponse) {
+                            console.log('Logged in with Facebook!');
+                            // You can now use the Facebook API to access user data
+                            FB.api('/me', { fields: 'id,name' }, function (response) {
+                                console.log(response);
+                            });
+
+
+                        } else {
+                            console.log('Login failed!');
+                        }
+                    }, { scope: 'email, publish_to_groups' });
+                }
+            });
+
         }
     </script>
 
