@@ -48,6 +48,10 @@
                     FB.api('/me', { fields: 'id,name' }, function (response) {
                         console.log(response);
                     });
+                    FB.logout(function(response) {
+                        console.log('Person is now logged out');
+   // Person is now logged out
+});
                     
                 } else {
                     console.log('Login failed!');
